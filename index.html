@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double Encryption/Decryption</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #009688;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #009688;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        h3 {
+            color: #009688;
+        }
+
+        p {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Double Encryption/Decryption</h2>
+    
+    <form action="/encrypt" method="post">
+        <label for="plaintext">Enter plaintext:</label><br>
+        <input type="text" id="plaintext" name="plaintext" required><br><br>
+        
+        <label for="caesar_shift">Enter Caesar Shift (for encryption):</label><br>
+        <input type="number" id="caesar_shift" name="caesar_shift" required><br><br>
+        
+        <label for="vernam_key">Enter Vernam Key (same length as plaintext):</label><br>
+        <input type="text" id="vernam_key" name="vernam_key" required><br><br>
+        
+        <input type="submit" value="Encrypt">
+    </form>
+
+    <br>
+
+    <form action="/decrypt" method="post">
+        <label for="ciphertext">Enter ciphertext:</label><br>
+        <input type="text" id="ciphertext" name="ciphertext" required><br><br>
+        
+        <label for="caesar_shift_decrypt">Enter Caesar Shift (for decryption):</label><br>
+        <input type="number" id="caesar_shift_decrypt" name="caesar_shift_decrypt" required><br><br>
+        
+        <label for="vernam_key_decrypt">Enter Vernam Key (same length as plaintext):</label><br>
+        <input type="text" id="vernam_key_decrypt" name="vernam_key_decrypt" required><br><br>
+        
+        <input type="submit" value="Decrypt">
+    </form>
+
+    {% if result_encrypt %}
+    <h3>Encryption Result:</h3>
+    <p>{{ result_encrypt }}</p>
+    {% endif %}
+
+    {% if result_decrypt %}
+    <h3>Decryption Result:</h3>
+    <p>{{ result_decrypt }}</p>
+    {% endif %}
+</body>
+</html>
